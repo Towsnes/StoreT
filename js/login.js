@@ -190,13 +190,13 @@ function showSuccessModal(username) {
     };
 }
 
+
 function redirectToIndex() {
-    function redirectToIndex() {
     loginSection.style.display = 'none';
     signupSection.style.display = 'none';
     dashboard.style.display = 'block';
 }
-}
+
 
 const loginModal = document.getElementById('loginModal');
 const closeModal = document.getElementById('closeModal');
