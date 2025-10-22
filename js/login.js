@@ -191,7 +191,7 @@ function showSuccessModal(username) {
 }
 
 function redirectToIndex() {
-    window.location.href = '../index.html';
+    window.location.href = 'index.html';
 }
 
 const loginModal = document.getElementById('loginModal');
