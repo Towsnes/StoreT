@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreT-Shoes</title>
+    <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/shoppingCart.css">
+    <link rel="stylesheet" href="../css/cartProducts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>  
+    <!-- Header -->
+<header>
+    <div class="header-inner">
+        <div class="logo">StoreT</div>
+        <nav aria-label="Primary navigation">
+            <ul>
+                <li><a href="../index.html" >Homepage</a></li>
+                <li><a href="../aboutUs.html">About Us</a></li>
+                <li class="has-submenu">
+                    <a href="../shop.html" >Shop <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="products/blazerJacket.html" class="active">Single Product</a></li>
+                    </ul>
+                </li>
+                <li><a href="../contractUs.html">Contact Us</a></li>
+                <li class="has-submenu">
+                    <a href="#">Page <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="../pageTeam.html">Team</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLoginModal()">Login</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="icons">
+            <button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="cart" aria-label="Cart" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button> <button class="cart" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Product -->
+<section class="product-section">
+        <div class="product-image">
+            <img src="../images/product10.jpg" alt="Leather Rockerman Jacket">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title">Premium Motive Leather Shoes</h1>
+            <div class="price">
+                <span class="old-price">$299.00</span>
+                <span class="new-price">$249.00</span>
+            </div>
+            <p class="description">
+            Experience elegance and craftsmanship with the Premium Motive Leather Shoes — the ultimate choice for refined taste and comfort. Designed from premium-grade leather, these shoes combine sophistication with durability for any formal or smart-casual occasion.
+            </p>
+            <ul class="features">
+                <li>Crafted from genuine leather for a luxurious feel</li>
+                <li>Soft interior lining ensures superior comfort</li>
+                <li>Durable sole for long-lasting wear and traction</li>
+                <li>Timeless design suitable for work or special events</li>
+            </ul>
+            <div class="product-options">
+                <div class="product-option-group">
+                    <label class="product-option-label">Select Size:</label>
+                    <div class="product-size-options">
+                        <button type="button" class="size-btn" data-size="36">36</button>
+                        <button type="button" class="size-btn" data-size="38">38</button>
+                        <button type="button" class="size-btn" data-size="40">40</button>
+                        <button type="button" class="size-btn" data-size="42">42</button>
+                        <button type="button" class="size-btn" data-size="44">44</button>
+                    </div>
+                </div>
+
+                <div class="product-option-group">
+                    <label class="product-option-label">Select Color:</label>
+                    <div class="product-color-options">
+                        <button type="button" class="color-btn" data-color="Grey" style="background-color: #9e9e9e;"></button>
+                        <button type="button" class="color-btn" data-color="Black" style="background-color: #000;"></button>
+                        <button type="button" class="color-btn" data-color="Navy" style="background-color: #001f3f;"></button>
+                        <button type="button" class="color-btn" data-color="Beige" style="background-color: #d6bfa0;"></button>
+                    </div>
+                </div>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+            <div class="more-info">
+                <p><strong>SKU:</strong> N/A234-42</p>
+                <p><strong>Category:</strong> Jackets</p>
+                <p><strong>Tags:</strong> Black, Topman</p>
+            </div>
+            <div class="social-icons">
+                <a href="#">Facebook</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+</section>
+
+<section class="product-tabs-section">
+
+    <div class="product-tabs-nav">
+        <button class="product-tab-btn product-tab-active" data-tab="description">Description</button>
+        <button class="product-tab-btn" data-tab="additional">Additional information</button>
+        <button class="product-tab-btn" data-tab="reviews">Reviews (0)</button>
+    </div>
+
+    <!-- Tab: Description -->
+    <div id="description" class="product-tab-content product-tab-active">
+        <h2 class="product-tab-title">Description</h2>
+        <p class="product-description-text">Our product is meticulously crafted from premium materials, offering lasting durability and exceptional comfort in every use. Every detail is carefully refined to ensure maximum customer satisfaction.</p>
+        <p class="product-description-text">With a modern and elegant design combined with outstanding features, this product not only meets your everyday needs but also reflects your unique style and sophistication. Whether for personal use or as a gift, it’s the perfect choice.</p>
+        <p class="product-description-text">Experience it today to feel the quality and difference we proudly deliver!</p>
+    </div>
+
+    <!-- Tab: Additional Info -->
+    <div id="additional" class="product-tab-content">
+        <h2 class="product-tab-title">Additional information</h2>
+        <table class="product-info-table">
+            <tr><td>Weight</td><td>1 kg</td></tr>
+            <tr><td>Dimensions</td><td>60 × 35 × 150 cm</td></tr>
+            <tr><td>Size</td><td>36, 38, 40, 42, 44, 46, 48, 50</td></tr>
+            <tr><td>Color</td><td>Grey</td></tr>
+        </table>
+    </div>
+
+    <!-- Tab: Reviews -->
+    <div id="reviews" class="product-tab-content">
+        <h2 class="product-tab-title">Reviews</h2>
+        <p class="product-review-empty">There are no reviews yet.</p>
+        <p class="product-review-invite">Be the first to review "Slim Fit Straight Leg Jeans"</p>
+        
+        <form class="product-review-form" id="reviewForm">
+            <p class="product-review-note">
+                Your email address will not be published. Required fields are marked 
+                <span class="product-required">*</span>
+            </p>
+
+            <label class="product-form-label">Your rating <span class="product-required">*</span></label>
+            <div class="product-rating-stars">
+                <span class="product-star" data-rating="1">☆</span>
+                <span class="product-star" data-rating="2">☆</span>
+                <span class="product-star" data-rating="3">☆</span>
+                <span class="product-star" data-rating="4">☆</span>
+                <span class="product-star" data-rating="5">☆</span>
+            </div>
+
+            <label class="product-form-label">Your review <span class="product-required">*</span></label>
+            <textarea class="product-form-textarea" required></textarea>
+
+            <label class="product-form-label">Name <span class="product-required">*</span></label>
+            <input type="text" class="product-form-input" required>
+
+            <label class="product-form-label">Email <span class="product-required">*</span></label>
+            <input type="email" class="product-form-input" required>
+
+            <div class="product-form-checkbox-wrap">
+                <input type="checkbox" class="product-form-checkbox" id="save-info">
+                <label class="product-form-checkbox-label" for="save-info">
+                    Save my name, email, and website in this browser for the next time I comment.
+                </label>
+            </div>
+
+            <button type="submit" class="product-form-submit">Submit</button>
+        </form>
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <!-- Main footer with background image -->
+    <div class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <h2>StoreT</h2>
+                    <address>
+                    Trường đại học giao thông vận tải<br>
+                    Towsnes-Huy: Hà Nội
+                    </address>
+                    <a href="mailto:hello@yourdomain.tld" class="footer-email">hinsiki11@gmail.com</a>
+                    <div class="footer-phone">0349887716</div>
+                    <img src="/images/visa.png" alt="Visa">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">Sportswear</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Face & Body</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Delivery & returns</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Leadership</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Gift Voucher</a></li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom footer with solid black background -->
+    <div class="bottom-footer">
+        <div class="footer-content">
+            <div class="footer-legal">
+                <div class="copyright">Copyright © 2025 Towsnes-Huy, Trường đại học giao thông vận tải.</div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Term of use</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Nút login ở header gọi openLoginModal() -->
+<div id="loginModal" class="login-modal">
+  <div class="login-modal__content">
+    <span class="login-modal__close-btn" id="closeModal">&times;</span>
+
+    <!-- Đăng nhập -->
+    <section class="login-modal__section login-modal__section--active" id="loginSection">
+      <h2 class="login-modal__title">Đăng nhập</h2>
+      <div id="loginSuccess" class="login-modal__success"></div>
+      <form id="loginForm">
+        <input type="text" id="username" class="login-modal__input" placeholder="Tên đăng nhập hoặc Email" required>
+        <div class="login-modal__error" id="usernameError"></div>
+
+        <input type="password" id="password" class="login-modal__input" placeholder="Mật khẩu" required>
+        <div class="login-modal__error" id="passwordError"></div>
+
+        <button type="submit" class="login-modal__button">Đăng nhập</button>
+        <p class="login-modal__text">Chưa có tài khoản? <a id="showSignup">Đăng ký ngay</a></p>
+      </form>
+    </section>
+
+    <!-- Đăng ký -->
+    <section class="login-modal__section" id="signupSection">
+      <h2 class="login-modal__title">Đăng ký</h2>
+      <div id="signupSuccess" class="login-modal__success"></div>
+      <form id="signupForm">
+        <input type="text" id="newUsername" class="login-modal__input" placeholder="Tên đăng nhập (≥3 ký tự)" required>
+        <div class="login-modal__error" id="newUsernameError"></div>
+
+        <input type="email" id="newEmail" class="login-modal__input" placeholder="Email" required>
+        <div class="login-modal__error" id="newEmailError"></div>
+
+        <input type="password" id="newPassword" class="login-modal__input" placeholder="Mật khẩu (≥6 ký tự)" required>
+        <div class="login-modal__hint">Mật khẩu nên có ít nhất 6 ký tự</div>
+        <div class="login-modal__strength" id="passwordStrength">
+          <div class="login-modal__strength-bar" id="passwordStrengthBar"></div>
+        </div>
+        <div class="login-modal__error" id="newPasswordError"></div>
+
+        <input type="password" id="confirmPassword" class="login-modal__input" placeholder="Xác nhận mật khẩu" required>
+        <div class="login-modal__error" id="confirmPasswordError"></div>
+
+        <button type="submit" class="login-modal__button">Đăng ký</button>
+        <p class="login-modal__text">Đã có tài khoản? <a id="showLogin">Quay lại đăng nhập</a></p>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="login-modal__section" id="dashboard">
+      <h2 class="login-modal__title">StoreT Dashboard</h2>
+      <div class="login-modal__welcome">Chào mừng, <span id="displayUsername"></span>!</div>
+      <p><strong>👤</strong> <span id="dashUsername"></span></p>
+      <p><strong>📧</strong> <span id="dashEmail"></span></p>
+      <p><strong>📅</strong> <span id="dashDate"></span></p>
+      <button class="login-modal__button" id="logoutBtn">Đăng xuất</button>
+    </section>
+
+    <!-- Modal thông báo đăng nhập thành công -->
+    <div class="login-modal__success-box" id="successModal">
+      <div class="login-modal__inner">
+        <div class="login-modal__icon">✓</div>
+        <h3 class="login-modal__title">Đăng nhập thành công!</h3>
+        <p>Chào mừng <span id="modalUsername"></span> đến với StoreT!<br>Đang chuyển hướng...</p>
+        <button class="login-modal__button" id="continueBtn">Tiếp tục</button>
+        <p class="login-modal__text">Tự động chuyển sau 3 giây</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+        <button class="close-cart" onclick="toggleCart()">×</button>
+        <h2 class="cart-title">🛒 Giỏ hàng của bạn</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <div class="total-label">Tổng cộng:</div>
+            <div class="total-amount" id="totalAmount">$0.00</div>
+            <button class="checkout-btn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/cartProducts.js"></script>
+<script src="../js/shoppingCart.js"></script>
+<script src="../js/login.js"></script>
+
+<script src="../js/tabProduct.js"></script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+/* === 0. Global Styles === */
+body {
+    margin: 0;
+    background-color: #fff;
+}
+/* === 1. Header & Navigation === */
+/* Header chính (thanh trên cùng) */
+header {
+    font-family: "Poppins", sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+}
+
+/* header inner layout to better control spacing */
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 24px;
+}
+
+/* Logo */
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Menu chính */
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 4px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    overflow: visible;
+    transition: color 160ms ease;
+}
+
+/* animated underline using pseudo-element */
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0%;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #b1845a, #8a5e3a);
+    opacity: 1;
+    transform-origin: left;
+    transition: width 260ms cubic-bezier(.2, .9, .2, 1), opacity 180ms ease;
+}
+
+/* Hover grows the underline from left to right */
+nav a:hover {
+    color: #b1845a;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Active underline refined (persistent) */
+nav a.active::after {
+    width: 100%;
+}
+
+/* Submenu container */
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu .submenu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    z-index: 50;
+    display: none;
+    min-width: 180px;
+    padding: 8px 0;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+    list-style: none;
+}
+
+.has-submenu .submenu li {
+    padding: 0;
+}
+
+.has-submenu .submenu a {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.has-submenu .submenu a:hover {
+    color: #b1845a;
+    background: rgba(177, 132, 90, 0.06);
+}
+
+/* Show submenu on hover or keyboard focus */
+.has-submenu:hover>.submenu,
+.has-submenu:focus-within>.submenu {
+    display: block;
+}
+
+/* Khu vực icon phải */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.cart {
+    position: relative;
+}
+
+/* icon buttons use default styles (buttons inside .icons) */
+.icons button {
+    padding: 8px;
+    border: none;
+    font-size: 18px;
+    color: #6b4f36;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* 2. About hero */
+.about-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.background-about {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 35rem;
+    background-image: url('../images/backgroundabout1.jpg');
+    opacity: 0.9;
+    filter: grayscale(100%) contrast(1.1) brightness(0.8);
+}
+
+.about-content {
+    position: relative;
+    left: -20rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 70px;
+    max-width: 700px;
+    border: 3px solid #d4a574;
+}
+
+h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.about-content h3 {
+    font-size: 1.8rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+.decorative-line {
+    width: 80px;
+    height: 3px;
+    background: #d4a574;
+    margin: 25px 0;
+}
+
+/* === 5. About / Stats Section === */
+.about-stats {
+    position: relative;
+    top: -18rem;
+    padding: 80px 24px 8px;
+    background: #fff;
+}
+
+.about-stats .container {
+    display: grid;
+    grid-template-columns: 420px 1fr; /* ảnh trái cố định, nội dung phải linh hoạt */
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.about-right small {
+    font-weight: 600;
+    color: #caa98b;
+}
+
+.about-right h2 {
+    margin: 8px 0 16px;
+    font-size: 36px;
+    color: #222;
+}
+
+.about-right p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.stats {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.stat {
+    min-width: 140px;
+    padding: 18px 24px;
+    border-radius: 6px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 12px 28px rgba(16, 24, 40, 0.06);
+}
+
+.stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #c78f6a;
+}
+
+.stat .label {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #777;
+}
+
+/* === 6. Popular Categories Section === */
+.popular-cats {
+    position: relative;
+    padding: 0 24px 60px;
+}
+
+.popular-cats .popular-band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -19rem;
+    z-index: 1;
+    height: 500px; 
+    background: rgba(11, 15, 22, 0.72);
+    background-size: cover ;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.popular-cats .popular-container {
+    position: relative;
+    z-index: 5;
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #fff;
+    left: -20rem;
+    top: -5rem;
+    padding: 30px 30px 30px 30px;
+}
+
+.popular-cats .section-title {
+    margin: 6px 0 28px;
+    color: black;
+    font-size: 40px;
+}
+
+.popular-cats small {
+    display: block;
+    color: #caa98b;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Our value */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.left-section {
+    padding: 20px;
+}
+
+.label {
+    color: #c9a87c;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.main-title {
+    font-size: 48px;
+    line-height: 1.2;
+    color: #2c2c2c;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.description {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-size: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border: 2px solid #2c2c2c;
+    background: transparent;
+    color: #2c2c2c;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #2c2c2c;
+    color: white;
+}
+
+.right-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 25px;
+    background: #fff5eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c9a87c;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    stroke: #c9a87c;
+    stroke-width: 2;
+    fill: none;
+}
+
+.card-title {
+    font-size: 22px;
+    color: #2c2c2c;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.card-text {
+    color: #888;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* === 12. Footer === */
+.footer {
+    color: #fff;
+}
+
+.main-footer {
+    position: relative;
+    padding: 80px 0;
+    background-image:url('../images/backgroundfooter.jpg') ;
+    background-position: center top -30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 28, 36, 0.92);
+}
+
+.footer-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-info {
+    display: flex;
+    gap: 80px;
+    margin-bottom: 60px;
+}
+
+.footer-logo {
+    flex: 0 0 300px;
+}
+
+.footer-logo h2 {
+    margin: 0 0 20px;
+    font-size: 28px;
+}
+
+.footer-logo address {
+    margin-bottom: 12px;
+    font-style: normal;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-email, .footer-phone {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.footer-links {
+    flex: 1;
+    display: flex;
+    gap: 60px;
+}
+
+.footer-column h3 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.footer-column ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-column ul a:hover {
+    color: #fff;
+}
+
+.footer-newsletter {
+    padding: 40px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-newsletter h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+}
+
+.footer-newsletter p {
+    max-width: 500px;
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.newsletter-form .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    border-radius: 4px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.185);
+}
+
+.newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-btn {
+    padding: 10px 32px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background: #c19778;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.newsletter-btn:hover {
+    background: #a47a5c;
+}
+
+/* Bottom Footer */
+.bottom-footer {
+    padding: 32px 0;
+    background: #000;
+}
+
+.bottom-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.payment-methods img {
+    height: 24px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-link {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.social-link:hover {
+    opacity: 1;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.legal-links {
+    display: flex;
+    gap: 24px;
+}
+.legal-links a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.legal-links a:hover {
+    color: rgba(253, 252, 252, 0.6);
+    transform: translateY(-1px);
+}

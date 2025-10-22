@@ -1,0 +1,982 @@
+/* === 0. Global Styles === */
+body {
+    margin: 0;
+}
+
+/* === 1. Reusable Components (Buttons) === */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    background: #b1845a;
+    transition: background 220ms ease, color 220ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.btn.small {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.btn.outline {
+    color: #fff;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-group .btn {
+    padding: 10px 16px;
+}
+
+/* Button Hover Effects */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(11, 15, 22, 0.12);
+}
+
+.btn.outline:hover {
+    color: #3b2a1c;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.btn:hover:not(.outline) {
+    background: #8a5e3a;
+}
+
+/* === 2. Header & Navigation === */
+/* Header chính (thanh trên cùng) */
+header {
+    font-family: "Poppins", sans-serif;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.06);
+}
+
+/* header inner layout to better control spacing */
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 24px;
+}
+
+/* Logo */
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Menu chính */
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    position: relative;
+    display: inline-block;
+    padding: 8px 4px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    overflow: visible;
+    transition: color 160ms ease;
+}
+
+/* animated underline using pseudo-element */
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0%;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #b1845a, #8a5e3a);
+    opacity: 1;
+    transform-origin: left;
+    transition: width 260ms cubic-bezier(.2, .9, .2, 1), opacity 180ms ease;
+}
+
+/* Hover grows the underline from left to right */
+nav a:hover {
+    color: #b1845a;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Active underline refined (persistent) */
+nav a.active::after {
+    width: 100%;
+}
+
+/* Submenu container */
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu .submenu {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    z-index: 50;
+    display: none;
+    min-width: 180px;
+    padding: 8px 0;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+    list-style: none;
+}
+
+.has-submenu .submenu li {
+    padding: 0;
+}
+
+.has-submenu .submenu a {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.has-submenu .submenu a:hover {
+    color: #b1845a;
+    background: rgba(177, 132, 90, 0.06);
+}
+
+/* Show submenu on hover or keyboard focus */
+.has-submenu:hover>.submenu,
+.has-submenu:focus-within>.submenu {
+    display: block;
+}
+
+/* Khu vực icon phải */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.cart {
+    position: relative;
+}
+
+/* icon buttons use default styles (buttons inside .icons) */
+.icons button {
+    padding: 8px;
+    border: none;
+    font-size: 18px;
+    color: #6b4f36;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* === 3. Hero Slideshow === */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 560px;
+    overflow: hidden; 
+    color: #fff;
+}
+
+.hero .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover; /* cover đảm bảo ảnh phủ hết vùng */
+    background-position: center; /* vị trí lấy nét mặc định */
+    opacity: 0; /* ẩn khi chưa được animate */
+    transform: scale(1); /* ban đầu không phóng to */
+    transition: opacity 1s ease, transform 10s ease;
+}
+
+.hero .slide-1 {
+    animation: heroCross 14s infinite ease-in-out 0s; /* chạy lặp 14s, bắt đầu ngay */
+}
+
+.hero .slide-2 {
+    animation: heroCross 14s infinite ease-in-out 7s; /* offset 7s để xen kẽ với slide-1 */
+}
+
+/* Nội dung trên hero (tiêu đề, mô tả, nút) nằm trên cùng với z-index cao */
+.hero-content {
+    position: relative;
+    z-index: 30;
+    max-width: 920px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    margin: 0 0 12px;
+    font-size: 54px; /* kích thước lớn cho headline */
+}
+
+.hero-content .sub {
+    margin-bottom: 18px;
+}
+
+/* === 4. Feature Cards === */
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: -80px auto 80px; 
+    padding: 0 24px;
+}
+
+.card {
+    position: relative;
+    height: 300px;
+    border-radius: 4px;
+    overflow: hidden; /* ẩn phần ảnh phóng to tràn ra */
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* đảm bảo ảnh phủ hết vùng mà không méo */
+    object-position: 35% 50%; /* vị trí mặc định lấy nét ảnh (có thể tùy chỉnh cho từng ảnh) */
+    transition: transform 6s cubic-bezier(.2, .9, .2, 1), object-position 600ms ease; /* zoom chậm, vị trí chuyển mượt */
+    will-change: transform, object-position;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10; /* nằm trên ảnh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 28px;
+    color: #fff;
+}
+
+.card-overlay h3 {
+    margin: 8px 0 12px;
+}   
+
+/* Hover effect: zoom ảnh và căn giữa chủ thể */
+.card:hover .card-img {
+    object-position: 50% 50%; /* căn giữa chủ thể */
+    transform: scale(1.12) translateY(-4%); /* phóng to và dịch nhẹ lên */
+}
+
+/* === 5. About / Stats Section === */
+.about-stats {
+    padding: 80px 24px 8px;
+    background: #fff;
+}
+
+.about-stats .container {
+    display: grid;
+    grid-template-columns: 420px 1fr; /* ảnh trái cố định, nội dung phải linh hoạt */
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-left img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.about-right small {
+    font-weight: 600;
+    color: #caa98b;
+}
+
+.about-right h2 {
+    margin: 8px 0 16px;
+    font-size: 36px;
+    color: #222;
+}
+
+.about-right p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.stats {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.stat {
+    min-width: 140px;
+    padding: 18px 24px;
+    border-radius: 6px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 12px 28px rgba(16, 24, 40, 0.06);
+}
+
+.stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: #c78f6a;
+}
+
+.stat .label {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #777;
+}
+
+/* === 6. Popular Categories Section === */
+.popular-cats {
+    position: relative;
+    padding: 0 24px 60px;
+}
+
+.popular-cats .popular-band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -40px;
+    z-index: 1;
+    height: 220px; 
+    /* Visual */
+    background: rgba(11, 15, 22, 0.72);
+    background-size: cover;
+    background-position: center;
+}
+
+.popular-cats .container {
+    position: relative;
+    z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.popular-cats .section-title {
+    margin: 6px 0 28px;
+    text-align: center;
+    color: #fff;
+}
+
+.popular-cats small {
+    display: block;
+    text-align: center;
+    color: #caa98b;
+}
+
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.cat-card {
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 18px 40px rgba(16, 24, 40, 0.06);
+    overflow: hidden;
+}
+
+.cat-img {
+    height: 220px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Make the last category (Accessories) fill its card fully without white bars */
+.cat-card:last-child .cat-img {
+    background-size: cover;
+    background-position: center;
+}
+
+.cat-body {
+    padding: 18px;
+    text-align: center;
+}
+
+.cat-body h4 {
+    margin: 8px 0 12px;
+    color: #444;
+}
+
+/* === 7. Split Feature Section === */
+.split-feature {
+    padding: 80px 24px;
+}
+
+.split-feature .container {
+    display: grid;
+    grid-template-columns: 1fr 520px;
+    gap: 36px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.split-left small {
+    font-weight: 600;
+    color: #d4a77c;
+}
+
+.split-left h2 {
+    margin: 12px 0;
+    font-size: 36px;
+    color: #222;
+}
+
+.split-left p {
+    margin-bottom: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.split-right img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* === 8. Latest Products Section === */
+.latest-products {
+    padding: 60px 24px;
+}
+
+.latest-products .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.latest-products small {
+    margin-bottom: 28px;
+    font-weight: 600;
+    color: #d1a280;
+    text-align: center;
+}
+
+.latest-products>.container>small {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #caa98b;
+    text-align: center;
+}
+
+.latest-products .center {
+    margin-bottom: 28px;
+    font-size: 32px;
+    color: #222;
+    text-align: center;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+.product-card {
+    /* Box Model & Layout */
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    /* Visual */
+    background: #fff;
+    box-shadow: 0 18px 40px rgba(16, 24, 40, 0.05);
+    overflow: visible;
+}
+
+.product-img {
+    height: 360px;
+    border-radius: 6px 6px 0 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.product-body {
+    /* Box Model & Layout */
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; /* Ensure buttons align across cards */
+    gap: 12px;
+    min-height: 160px;
+    padding: 18px;
+}
+
+.product-body h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+.price {
+    text-align: center;
+}
+
+.price .old {
+    margin-right: 8px;
+    color: #7b8b83;
+    text-decoration: line-through;
+}
+
+.price .new {
+    font-weight: 700;
+}
+
+.product-btn {
+    margin: 8px auto 0; 
+}
+
+.product-body .product-btn {
+    margin-top: auto; /
+}
+
+/* === 9. Promo Banner === */
+.promo-banner {
+    position: relative;
+    padding: 80px 24px 0;  
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* ensure image doesn't tile */
+}
+
+.promo-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(8, 10, 12, 0.55);
+}
+
+.promo-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    color: #fff;
+}
+
+.promo-inner small {
+    color: #d2b89f;
+}
+
+.promo-inner h2 {
+    max-width: 720px;
+    margin: 0;
+    font-size: 40px;
+}
+
+.promo-inner p {
+    max-width: 680px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.promo-inner .btn.outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* === 10. Why Choose Us Section === */
+.why-choose {
+    position: relative;
+    margin-top: 0; 
+    padding: 1.75rem 0 3rem;
+    background: linear-gradient(180deg, #fff 0%, #fbfbfb 100%);
+    overflow: visible;
+}
+.why-choose{
+    margin-top: 50px;
+}
+.why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.why-left {
+    margin-left: 280px;
+    margin-bottom: 100px;
+    padding-left: 18px;
+}
+
+.why-left small {
+    display: inline-block;
+    margin-bottom: .75rem;
+    font-weight: 600;
+    color: #caa98b;
+}
+
+.why-left h2 {
+    margin-bottom: .75rem;
+    font-size: 2rem;
+}
+
+.why-left p {
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.why-right {
+    display: grid;
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 10px;
+    background: #f0eeee;
+}
+
+.feature-item .icon {
+    display: grid;
+    place-items: center;
+    min-width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff;
+}
+
+.feature-item h4 {
+    margin: 0 0 .25rem 0;
+}
+
+.feature-item p {
+    margin: 0;
+    font-size: .95rem;
+    color: #666;
+}
+
+/* === 11. Brand Logo Grid Section === */
+.brand-logos {
+    padding: 40px 24px 60px;
+    background: #f5f5f5;
+}
+
+.brand-logos .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brand-logos .section-header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.brand-logos .section-header small {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #d1a280;
+}
+
+.brand-logos .section-header h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: #222;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.brand-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(16, 24, 40, 0.534);
+}
+
+.brand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+}
+
+.brand-card img {
+    max-width: 100%;
+    max-height: 40px;
+    object-fit: contain;
+    opacity: 0.85;
+}
+
+.brand-card:hover img {
+    opacity: 1;
+}
+
+/* === 12. Footer === */
+.footer {
+    color: #fff;
+}
+
+.main-footer {
+    position: relative;
+    padding: 80px 0;
+    background-image:url('/images/backgroundfooter.jpg') ;
+    background-position: center top -30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(22, 28, 36, 0.92);
+}
+
+.footer-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-info {
+    display: flex;
+    gap: 80px;
+    margin-bottom: 60px;
+}
+
+.footer-logo {
+    flex: 0 0 300px;
+}
+
+.footer-logo h2 {
+    margin: 0 0 20px;
+    font-size: 28px;
+}
+
+.footer-logo address {
+    margin-bottom: 12px;
+    font-style: normal;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-email, .footer-phone {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.footer-links {
+    flex: 1;
+    display: flex;
+    gap: 60px;
+}
+
+.footer-column h3 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.footer-column ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-column ul a:hover {
+    color: #fff;
+}
+
+.footer-newsletter {
+    padding: 40px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-newsletter h3 {
+    margin: 0 0 12px;
+    font-size: 16px;
+}
+
+.footer-newsletter p {
+    max-width: 500px;
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.newsletter-form .form-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    border-radius: 4px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.185);
+}
+
+.newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-btn {
+    padding: 10px 32px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background: #c19778;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.newsletter-btn:hover {
+    background: #a47a5c;
+}
+
+/* Bottom Footer */
+.bottom-footer {
+    padding: 32px 0;
+    background: #000;
+}
+
+.bottom-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.payment-methods img {
+    height: 24px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-link {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.social-link:hover {
+    opacity: 1;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.legal-links {
+    display: flex;
+    gap: 24px;
+}
+
+.legal-links a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.legal-links a:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+
+/* === 13. Keyframes === */
+/* Keyframes điều khiển crossfade + zoom:
+   - giai đoạn 10%-45% là ảnh hiện rõ và zoom dần
+  
+ - tiếp đó fade out để nhường chỗ cho ảnh kế tiếp
+*/
+@keyframes heroCross {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    10% {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    45% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+
+    55% {
+        opacity: 0;
+        transform: scale(1.18);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.18);
+    }
+}

@@ -1,0 +1,211 @@
+.login-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.login-modal__content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 380px;
+    position: relative;
+}
+
+.login-modal__close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Các section chính (Login, Signup, Dashboard) */
+.login-modal__section {
+    display: none;
+    /* Thêm transition cho opacity nếu sau này dùng JS chuyển đổi mượt mà hơn */
+    opacity: 1; 
+    transition: opacity 0.3s ease-out;
+}
+
+.login-modal__section--active {
+    display: block;
+}
+
+/* Ẩn Dashboard ban đầu theo logic JS */
+#dashboard {
+    display: none; 
+    text-align: left; 
+    padding: 10px 0;
+}
+
+/* Định dạng Tiêu đề */
+.login-modal__title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+}
+
+/* Định dạng Input và Button */
+.login-modal__input,
+.login-modal__button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-modal__button {
+    background: #b1845a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.login-modal__button:hover {
+    background: #8a5e3a;
+}
+
+/* Trạng thái lỗi (JS thêm class .error vào input) */
+.login-modal__input.error {
+    border-color: red; 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.4); 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Thông báo lỗi */
+.login-modal__error {
+    color: red;
+    font-size: 13px;
+    display: none;
+}
+
+.login-modal__error.show {
+    display: block;
+}
+
+/* Thông báo thành công */
+.login-modal__success {
+    color: green;
+    display: none;
+}
+
+.login-modal__success.show {
+    display: block;
+}
+
+/* Thanh độ mạnh mật khẩu Container */
+.login-modal__strength {
+    display: none; 
+    height: 6px;
+    background: #eee;
+    margin-top: 6px;
+    width: 100%;
+    position: relative;
+}
+
+.login-modal__strength.show {
+    display: block;
+}
+
+/* Thanh Bar bên trong (JS thêm các class strength) */
+.login-modal__strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.4s ease-out, background-color 0.4s ease-out;
+}
+
+.login-modal__strength-bar.strength-weak {
+    width: 33%;
+    background: red;
+}
+
+.login-modal__strength-bar.strength-medium {
+    width: 66%;
+    background: orange;
+}
+
+.login-modal__strength-bar.strength-strong {
+    width: 100%;
+    background: green;
+}
+
+/* Text gợi ý */
+.login-modal__hint {
+    font-size: 0.85em;
+    color: #999;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+/* Link chuyển đổi Đăng nhập/Đăng ký */
+.login-modal__text a {
+    color: #b1845a;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.login-modal__text a:hover {
+    text-decoration: underline;
+}
+
+/* Modal thông báo thành công (successModal) */
+.login-modal__success-box {
+    display: none;
+}
+
+.login-modal__success-box.show {
+    display: flex; 
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 10; 
+    border-radius: 8px; 
+}
+
+.login-modal__inner {
+    text-align: center;
+    padding: 20px;
+}
+
+.login-modal__icon {
+    font-size: 3.5em;
+    color: green;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Định dạng Dashboard */
+.login-modal__welcome {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #b1845a;
+    text-align: center;
+}
+
+.login-modal__section#dashboard p {
+    margin: 10px 0;
+    padding-left: 10px;
+    font-size: 0.95em;
+    color: #555;
+    text-align: left;
+}
+
+.login-modal__section#dashboard strong {
+    display: inline-block;
+    width: 20px; 
+    text-align: center;
+    font-weight: normal;
+}

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/shoppingCart.css">
+    <link rel="stylesheet" href="css/cartProducts.css">
+</head>
+<body>
+<header>
+    <div class="header-inner">
+        <div class="logo">StoreT</div>
+        <nav aria-label="Primary navigation">
+            <ul>
+                <li><a href="index.html" class="active">Homepage</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li class="has-submenu">
+                    <a href="shop.html">Shop <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="products/blazerJacket.html">Single Product</a></li>
+                    </ul>
+                </li>
+                <li><a href="contractUs.html">Contact Us</a></li>
+                <li class="has-submenu">
+                    <a href="#">Page <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="pageTeam.html">Team</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLoginModal()">Login</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="icons">
+            <button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="cart" aria-label="Cart" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero slideshow -->
+<section class="hero" aria-label="Homepage hero">
+    <div class="slides">
+        <div class="slide slide-1" style="background-image: url('images/backgroundhome.jpg');"></div>
+        <div class="slide slide-2" style="background-image: url('images/backgroundhome1.jpg');"></div>
+    </div>
+    <div class="hero-content">
+        <h1>Find your fit, find your style, find it here!</h1>
+        <p class="sub">Discover curated collections and featured products crafted for you.</p>
+        <div class="hero-cta">
+            <a class="btn outline" href="shop.html">Shop Now</a>
+            <a class="btn" href="shop.html">Find Promo</a>
+        </div>
+    </div>
+</section>
+
+<!-- Feature cards -->
+<section class="features">
+    <div class="card">
+        <img class="card-img" src="images/Tieude1.jpg" alt="collection">
+        <div class="card-overlay">
+            <small>New arrival</small>
+            <h3>Find latest our collections</h3>
+            <a class="btn small" href="shop.html">Shop Now</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img" src="images/Tieude2.jpg" alt="fragrance">
+        <div class="card-overlay">
+            <small>Featured Product</small>
+            <h3>Estée Lauder Fragrance</h3>
+            <a class="btn small" href="shop.html">Shop Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- About / Stats section -->
+<section class="about-stats">
+    <div class="container" >
+        <div class="about-left">
+            <img src="images/tieude3.png" alt="who we are" />
+        </div>
+        <div class="about-right">
+            <small>Who we are</small>
+            <h2>Great quality, great prices, great service!</h2>
+            <p>At our store, we’re dedicated to bringing you the best products at unbeatable prices. Every item is carefully selected for quality, style, and value — because your satisfaction is our top priority.</p>
+            <p>From everyday essentials to exclusive collections, we aim to make your shopping experience simple, enjoyable, and rewarding. Shop with confidence, knowing that great service and great deals are always guaranteed.</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="num">8K+</div>
+                    <div class="label">Happy customer</div>
+                </div>
+                <div class="stat">
+                    <div class="num">17K+</div>
+                    <div class="label">Sold Product</div>
+                </div>
+                <div class="stat">
+                    <div class="num">4.8</div>
+                    <div class="label">Customer Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Categories -->
+<section class="popular-cats">
+    <div class="popular-band" style="background-image: url('images/backgroundhome3.jpg');"></div>
+    <div class="container" >
+        <small>Featured</small>
+        <h2 class="section-title">Popular Categories</h2>
+
+        <div class="cat-grid">
+            <div class="cat-card">
+                <div class="cat-img" style="background-image: url('images/Clothing.jpg')"></div>
+                <div class="cat-body">
+                    <h4>Clothing</h4>
+                    <a class="btn small" href="#">Product</a>
+                </div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-img" style="background-image: url('images/shoes.jpg')"></div>
+                <div class="cat-body">
+                    <h4>Shoes</h4>
+                    <a class="btn small" href="#">Product</a>
+                </div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-img" style="background-image: url('images/jacket.jpg')"></div>
+                <div class="cat-body">
+                    <h4>Jacket</h4>
+                    <a class="btn small" href="#">Product</a>
+                </div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-img" style="background-image: url('images/Accesories.jpg')"></div>
+                <div class="cat-body">
+                    <h4>Accesories</h4>
+                    <a class="btn small" href="#">Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Split feature (text left, image right) -->
+<section class="split-feature">
+    <div class="container">
+        <div class="split-left">
+            <small>Top Quality & Brand</small>
+            <h2>Great quality, great prices, great service!</h2>
+            <p>Discover premium products at prices you’ll love. We’re committed to offering trusted quality, modern designs, and excellent customer care — because you deserve the best shopping experience.</p>
+            <a class="btn outline" href="#">Learn more</a>
+        </div>
+        <div class="split-right">
+            <img src="images/Tieude4.jpg" alt="store" />
+        </div>
+    </div>
+</section>
+
+<!-- Latest Product -->
+<section class="latest-products">
+    <div class="container">
+        <h2 class="center">Latest Product</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/premium\ Straight\ Leg\ Jeans\ White.jpg')"></div>
+                <div class="product-body">
+                    <h4>premium Straight Leg Jeans White</h4>
+                    <div class="price"><span class="old">$129.00</span> <span class="new">$89.00</span></div>
+                    <a class="btn product-btn" href="products/premiumJean.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Slim\ Fit\ Straight\ Leg\ Jeans.jpg')"></div>
+                <div class="product-body">
+                    <h4>Slim Fit Straight Leg Jeans</h4>
+                    <div class="price"><span class="old">$129.00</span> <span class="new">$89.00</span></div>
+                    <a class="btn product-btn" href="products/slimJean.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Premium\ Motive\ Leather\ Shoes.jpg')"></div>
+                <div class="product-body">
+                    <h4>Premium motive leather shoes</h4>
+                    <div class="price"><span class="old">$129.00</span> <span class="new">$89.00</span></div>
+                    <a class="btn product-btn" href="products/preLeatherShoes.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Exclusive\ Motive\ Leather\ Shoes.jpg')"></div>
+                <div class="product-body">
+                    <h4>Exclusive motive leather shoes</h4>
+                    <div class="price"><span class="old">$129.00</span> <span class="new">$89.00</span></div>
+                    <a class="btn product-btn" href="products/exclusiveShoes.html">Select options</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Promo banner -->
+<section class="promo-banner" style="background-image: url('images/Accesories.jpg')">
+    <div class="promo-inner">
+        <small>Promo</small>
+        <h2>Discount up to 50% for first purchase.</h2>
+        <p>Shop your favorite products and enjoy an exclusive welcome offer — save up to 50% on your very first order! Don’t miss out on the best deals while stocks last.</p>
+        <a class="btn outline" href="shop.html">Claim promo!</a>
+    </div>
+</section>
+
+<!-- Why Choose Us (pattern + features) -->
+<section class="why-choose">
+    <div class="why-inner container">
+        <div class="why-left" style="background-image: url('images/Pattern-4.png'); background-repeat: no-repeat; background-position: right;">
+            <small >Why Choose Us</small>
+            <h2>Affordable fashion that fits your lifestyle.</h2>
+            <p>We bring you stylish, high-quality fashion at prices that make sense. From trendy outfits to timeless essentials, we’re here to make you look and feel your best — every day, everywhere.</p>
+            <div class="btn-group">
+                <a class="btn" href="pageTeam.html">Discover me</a>
+                <a class="btn outline" href="javascript:void(0)" onclick="openLoginModal()">Discover more</a>
+            </div>
+        </div>
+        <div class="why-right">
+            <div class="feature-item">
+                <div class="icon">💎</div>
+                <div>
+                    <h4>Premium Product</h4>
+                    <p>Every piece is carefully selected for quality, comfort, and design — so you always get the best value.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="icon">📦</div>
+                <div>
+                    <h4>Safety Packaging</h4>
+                    <p>All orders are securely packed to ensure your items arrive in perfect condition.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🔒</div>
+                <div>
+                    <h4>100% Warranty Product</h4>
+                    <p>Shop with confidence — we offer a full warranty and easy returns for every product.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="icon">🎧</div>
+                <div>
+                    <h4>24/7 Support</h4>
+                    <p>Need help? Our support team is always available to assist you anytime, anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Editor Choice's -->
+<section class="latest-products">
+    <div class="container">
+        <small >Featured Product</small>
+        <h2 class="center">Editor Choice's</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Classic\ Denim\ Jacket.jpg')"></div>
+                <div class="product-body">
+                    <h4>Classic Denim Jacket</h4>
+                    <div class="price"><span class="old">$149.00</span> <span class="new">$129.00</span></div>
+                    <a class="btn product-btn" href="products/classicJacket.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Slim\ Fit\ Straight\ Leg\ Jeans.jpg')"></div>
+                <div class="product-body">
+                    <h4>Slim Fit Straight Leg Jeans</h4>
+                    <div class="price"><span class="old">$145.00</span> <span class="new">$89.00</span></div>
+                    <a class="btn product-btn" href="products/slimJean.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Casual\ Line\ Square\ Blazer\ Grey.jpg')"></div>
+                <div class="product-body">
+                    <h4>Casual Line Square Blazer Grey</h4>
+                    <div class="price"><span class="old">$350.00</span> <span class="new">$299.00</span></div>
+                    <a class="btn product-btn" href="products/blazerJacket.html">Select options</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('images/Exclusive\ Motive\ Leather\ Shoes.jpg')"></div>
+                <div class="product-body">
+                    <h4>Exclusive motive leather shoes</h4>
+                    <div class="price"><span class="old">$79.00</span> <span class="new">$59.00</span></div>
+                    <a class="btn product-btn" href="products/exclusiveShoes.html">Select options</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Promo banner -->
+<section class="promo-banner" style="background-image: url('images/Tieude1.jpg')">
+    <div class="promo-inner">
+        <small>Promo</small>
+        <h2>For trendy clothing at affordable prices.</h2>
+        <p>Stay stylish without breaking the bank. Explore our latest fashion collections — modern, comfortable, and made for every occasion.</p>
+        <a class="btn outline" href="javascript:void(0)" onclick="openLoginModal()">Discover more</a>
+    </div>
+</section>
+
+<!-- Most Popular Brand -->
+<section class="brand-logos">
+    <div class="container">
+        <div class="section-header">
+            <small>Featured</small>
+            <h2>Most Popular Brand</h2>
+        </div>
+        <div class="brand-grid">
+            <div class="brand-card">
+                <img src="images/brand1.png" alt="Velocity9 logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand2.png" alt="Utosia logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand3.png" alt="Solaytic logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand4.png" alt="LightAI logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand5.png" alt="Kanba logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand6.png" alt="FoxHub logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand7.png" alt="Earth2.0 logo">
+            </div>
+            <div class="brand-card">
+                <img src="images/brand8.png" alt="CodeLab logo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <!-- Main footer with background image -->
+    <div class="main-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <h2>StoreT</h2>
+                    <address>
+                    Trường đại học giao thông vận tải<br>
+                    Towsnes-Huy: Hà Nội
+                    </address>
+                    <a href="mailto:hello@yourdomain.tld" class="footer-email">hinsiki11@gmail.com</a>
+                    <div class="footer-phone">0349887716</div>
+                    <img src="images/visa.png" alt="Visa">
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">Sportswear</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Face & Body</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Delivery & returns</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Leadership</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Gift Voucher</a></li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom footer with solid black background -->
+    <div class="bottom-footer">
+        <div class="footer-content">
+            <div class="footer-legal">
+                <div class="copyright">Copyright © 2025 Towsnes-Huy, Trường đại học giao thông vận tải.</div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie Policy</a>
+                    <a href="#">Term of use</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Nút login ở header gọi openLoginModal() -->
+<div id="loginModal" class="login-modal">
+  <div class="login-modal__content">
+    <span class="login-modal__close-btn" id="closeModal">&times;</span>
+
+    <!-- Đăng nhập -->
+    <section class="login-modal__section login-modal__section--active" id="loginSection">
+      <h2 class="login-modal__title">Đăng nhập</h2>
+      <div id="loginSuccess" class="login-modal__success"></div>
+      <form id="loginForm">
+        <input type="text" id="username" class="login-modal__input" placeholder="Tên đăng nhập hoặc Email" required>
+        <div class="login-modal__error" id="usernameError"></div>
+
+        <input type="password" id="password" class="login-modal__input" placeholder="Mật khẩu" required>
+        <div class="login-modal__error" id="passwordError"></div>
+
+        <button type="submit" class="login-modal__button">Đăng nhập</button>
+        <p class="login-modal__text">Chưa có tài khoản? <a id="showSignup">Đăng ký ngay</a></p>
+      </form>
+    </section>
+
+    <!-- Đăng ký -->
+    <section class="login-modal__section" id="signupSection">
+      <h2 class="login-modal__title">Đăng ký</h2>
+      <div id="signupSuccess" class="login-modal__success"></div>
+      <form id="signupForm">
+        <input type="text" id="newUsername" class="login-modal__input" placeholder="Tên đăng nhập (≥3 ký tự)" required>
+        <div class="login-modal__error" id="newUsernameError"></div>
+
+        <input type="email" id="newEmail" class="login-modal__input" placeholder="Email" required>
+        <div class="login-modal__error" id="newEmailError"></div>
+
+        <input type="password" id="newPassword" class="login-modal__input" placeholder="Mật khẩu (≥6 ký tự)" required>
+        <div class="login-modal__hint">Mật khẩu nên có ít nhất 6 ký tự</div>
+        <div class="login-modal__strength" id="passwordStrength">
+          <div class="login-modal__strength-bar" id="passwordStrengthBar"></div>
+        </div>
+        <div class="login-modal__error" id="newPasswordError"></div>
+
+        <input type="password" id="confirmPassword" class="login-modal__input" placeholder="Xác nhận mật khẩu" required>
+        <div class="login-modal__error" id="confirmPasswordError"></div>
+
+        <button type="submit" class="login-modal__button">Đăng ký</button>
+        <p class="login-modal__text">Đã có tài khoản? <a id="showLogin">Quay lại đăng nhập</a></p>
+      </form>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="login-modal__section" id="dashboard">
+      <h2 class="login-modal__title">StoreT Dashboard</h2>
+      <div class="login-modal__welcome">Chào mừng, <span id="displayUsername"></span>!</div>
+      <p><strong>👤</strong> <span id="dashUsername"></span></p>
+      <p><strong>📧</strong> <span id="dashEmail"></span></p>
+      <p><strong>📅</strong> <span id="dashDate"></span></p>
+      <button class="login-modal__button" id="logoutBtn">Đăng xuất</button>
+    </section>
+
+    <!-- Modal thông báo đăng nhập thành công -->
+    <div class="login-modal__success-box" id="successModal">
+      <div class="login-modal__inner">
+        <div class="login-modal__icon">✓</div>
+        <h3 class="login-modal__title">Đăng nhập thành công!</h3>
+        <p>Chào mừng <span id="modalUsername"></span> đến với StoreT!<br>Đang chuyển hướng...</p>
+        <button class="login-modal__button" id="continueBtn">Tiếp tục</button>
+        <p class="login-modal__text">Tự động chuyển sau 3 giây</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+        <button class="close-cart" onclick="toggleCart()">×</button>
+        <h2 class="cart-title">🛒 Giỏ hàng của bạn</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <div class="total-label">Tổng cộng:</div>
+            <div class="total-amount" id="totalAmount">$0.00</div>
+            <button class="checkout-btn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/cartProducts.js"></script>
+<script src="js/shoppingCart.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
