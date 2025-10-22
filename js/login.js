@@ -191,7 +191,11 @@ function showSuccessModal(username) {
 }
 
 function redirectToIndex() {
-    window.location.href = 'index.html';
+    function redirectToIndex() {
+    loginSection.style.display = 'none';
+    signupSection.style.display = 'none';
+    dashboard.style.display = 'block';
+}
 }
 
 const loginModal = document.getElementById('loginModal');
