@@ -18,46 +18,36 @@ const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
 
 const newPasswordInput = document.getElementById('newPassword');
-const passwordStrength = document.getElementById('passwordStrength');
 const passwordStrengthBar = document.getElementById('passwordStrengthBar');
 
+const loginModal = document.getElementById('loginModal');
+const closeModal = document.getElementById('closeModal');
+
 showSignupBtn.addEventListener('click', () => {
-    loginSection.style.display = 'none';
-    signupSection.style.display = 'block';
-    clearErrors();
+    loginSection.classList.remove('login-modal__section--active');
+    signupSection.classList.add('login-modal__section--active');
 });
 
 showLoginBtn.addEventListener('click', () => {
-    signupSection.style.display = 'none';
-    loginSection.style.display = 'block';
-    clearErrors();
+    signupSection.classList.remove('login-modal__section--active');
+    loginSection.classList.add('login-modal__section--active');
 });
 
-function clearErrors() {
-    document.querySelectorAll('.error-message').forEach(el => {
-        el.classList.remove('show');
-        el.textContent = '';
-    });
-    document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
-    document.querySelectorAll('.success-message').forEach(el => el.classList.remove('show'));
+closeModal.onclick = () => loginModal.style.display = 'none';
+window.onclick = (e) => { if (e.target === loginModal) loginModal.style.display = 'none'; };
+
+function openLoginModal() {
+    loginModal.style.display = 'flex';
 }
 
-function showError(inputId, errorId, message) {
-    const input = document.getElementById(inputId);
-    const error = document.getElementById(errorId);
-    input.classList.add('error');
-    error.textContent = message;
-    error.classList.add('show');
-}
-
-newPasswordInput.addEventListener('input', (e) => {
+newPasswordInput.addEventListener('input', e => {
     const password = e.target.value;
     if (!password) {
-        passwordStrength.classList.remove('show');
+        passwordStrengthBar.style.width = '0%';
+        passwordStrengthBar.style.backgroundColor = '#ccc';
         return;
     }
 
-    passwordStrength.classList.add('show');
     let strength = 0;
     if (password.length >= 6) strength++;
     if (password.length >= 10) strength++;
@@ -65,13 +55,15 @@ newPasswordInput.addEventListener('input', (e) => {
     if (/[0-9]/.test(password)) strength++;
     if (/[^a-zA-Z0-9]/.test(password)) strength++;
 
-    passwordStrengthBar.className = 'login-modal__strength-bar';
-    if (strength <= 2) passwordStrengthBar.classList.add('strength-weak');
-    else if (strength <= 4) passwordStrengthBar.classList.add('strength-medium');
-    else passwordStrengthBar.classList.add('strength-strong');
+    let width = (strength / 5) * 100 + '%';
+    passwordStrengthBar.style.width = width;
+
+    if (strength <= 2) passwordStrengthBar.style.backgroundColor = 'red';
+    else if (strength <= 4) passwordStrengthBar.style.backgroundColor = 'orange';
+    else passwordStrengthBar.style.backgroundColor = 'green';
 });
 
-signupForm.addEventListener('submit', (e) => {
+signupForm.addEventListener('submit', e => {
     e.preventDefault();
     clearErrors();
 
@@ -82,54 +74,35 @@ signupForm.addEventListener('submit', (e) => {
 
     let hasError = false;
 
-    if (username.length < 3) {
-        showError('newUsername', 'newUsernameError', 'Tên đăng nhập phải có ít nhất 3 ký tự');
-        hasError = true;
-    } else if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-        showError('newUsername', 'newUsernameError', 'Tên đăng nhập đã tồn tại');
-        hasError = true;
-    }
+    if (username.length < 3) { showError('newUsername', 'newUsernameError', 'Tên đăng nhập ≥3 ký tự'); hasError = true; }
+    else if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) { showError('newUsername', 'newUsernameError', 'Tên đăng nhập đã tồn tại'); hasError = true; }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showError('newEmail', 'newEmailError', 'Email không hợp lệ');
-        hasError = true;
-    } else if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
-        showError('newEmail', 'newEmailError', 'Email đã được sử dụng');
-        hasError = true;
-    }
+    if (!emailRegex.test(email)) { showError('newEmail', 'newEmailError', 'Email không hợp lệ'); hasError = true; }
+    else if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) { showError('newEmail', 'newEmailError', 'Email đã được sử dụng'); hasError = true; }
 
-    if (password.length < 6) {
-        showError('newPassword', 'newPasswordError', 'Mật khẩu phải có ít nhất 6 ký tự');
-        hasError = true;
-    }
-    if (password !== confirmPassword) {
-        showError('confirmPassword', 'confirmPasswordError', 'Mật khẩu xác nhận không khớp');
-        hasError = true;
-    }
+    if (password.length < 6) { showError('newPassword', 'newPasswordError', 'Mật khẩu ≥6 ký tự'); hasError = true; }
+    if (password !== confirmPassword) { showError('confirmPassword', 'confirmPasswordError', 'Mật khẩu xác nhận không khớp'); hasError = true; }
 
     if (hasError) return;
 
     const newUser = { username, email, password, registeredDate: new Date().toLocaleDateString('vi-VN') };
     users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users)); // Lưu vào localStorage
+    localStorage.setItem('users', JSON.stringify(users));
 
-    const successMsg = document.getElementById('signupSuccess');
-    successMsg.textContent = '✅ Đăng ký thành công! Chuyển đến trang đăng nhập...';
-    successMsg.classList.add('show');
-
+    document.getElementById('signupSuccess').textContent = '✅ Đăng ký thành công!';
     signupForm.reset();
-    passwordStrength.classList.remove('show');
+    passwordStrengthBar.style.width = '0%';
 
     setTimeout(() => {
-        signupSection.style.display = 'none';
-        loginSection.style.display = 'block';
-        successMsg.classList.remove('show');
+        signupSection.classList.remove('login-modal__section--active');
+        loginSection.classList.add('login-modal__section--active');
         document.getElementById('username').value = username;
-    }, 2000);
+        document.getElementById('signupSuccess').textContent = '';
+    }, 1000);
 });
 
-loginForm.addEventListener('submit', (e) => {
+loginForm.addEventListener('submit', e => {
     e.preventDefault();
     clearErrors();
 
@@ -150,3 +123,15 @@ loginForm.addEventListener('submit', (e) => {
 
     window.location.href = 'index.html';
 });
+
+function showError(inputId, errorId, message) {
+    document.getElementById(inputId).classList.add('error');
+    const errorEl = document.getElementById(errorId);
+    errorEl.textContent = message;
+    errorEl.classList.add('show');
+}
+
+function clearErrors() {
+    document.querySelectorAll('.login-modal__error').forEach(el => { el.textContent = ''; el.classList.remove('show'); });
+    document.querySelectorAll('input').forEach(inp => inp.classList.remove('error'));
+}
